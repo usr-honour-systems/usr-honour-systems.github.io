@@ -45,7 +45,7 @@ void draw() {
   if (gameScreen == 0) {
     initScreen();
   } else if (gameScreen == 1) {
-    gameScreen();
+    roundScreen();
   } else if (gameScreen == 2) {
     gameOverScreen();
   }
@@ -85,8 +85,8 @@ void drawPlayers() {
   for (int i=0; i<4; i++) {
     if (i == 0) { fill(150, 255, 150); } else { fill(100, 205, 100); }
     ellipse(playerlocX[i], playerlocY[i], playerRad, playerRad);
-    fill(0); String text = i==0? "YOU" : "Player " + i; 
-    text(text, playerlocX[i], playerlocY[i]+2);
+    fill(0); String playr = i==0? "YOU" : "Player " + i; 
+    text(playr, playerlocX[i], playerlocY[i]+2);
   }
   fill(150, 200, 255); ellipse(width/2-100, height/2-150, 55, 55);
   fill(0); text("Tham", width/2-100, height/2-145);
@@ -96,7 +96,7 @@ void drawPlayers() {
     fill(0); noStroke(); text("sticks", boxlocX[whoseTurn]+25, boxlocY[whoseTurn]+20);
   
 }
-void gameScreen() {
+void roundScreen() {
   background(230);
   roundText();
   readyButton();
@@ -122,7 +122,6 @@ void advanceRound(int currentRound) {
   whoseTurn++;
   mySticks = 0; 
   roundNum ++;
-  if (roundNum > 3) { gameScreen = 2; } 
 }
 
 public void mousePressed() {
