@@ -172,7 +172,7 @@ header.masthead {
       margin-bottom: 50px;
       color: rgba(255, 255, 255, 0.7); }
   @media (min-width: 768px) {
-    header.masthead #game {
+    header.masthead {
       height: 100%;
       min-height: 600px; }
       header.masthead .header-content {
@@ -193,7 +193,10 @@ header.masthead {
             max-width: 80%;
             margin-right: auto;
             margin-left: auto; } }
-
+.fill { 
+    min-height: 90%;
+    height: 90%;
+}
 .service-box {
   max-width: 400px;
   margin: 50px auto 0; }
