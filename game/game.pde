@@ -13,6 +13,12 @@ float curStickboxX;
 float curStickboxY;
 float easing = 0.05;
 
+float[] tip1LocsX = new float[50];
+float[] tip1LocsY = new float[50];
+float[] tip2LocsX = new float[50];
+float[] tip2LocsY = new float[50];
+int[] sticksLum = new int[50];
+
 Game currentGame; 
 Player p1;
 Player p2;
@@ -44,6 +50,20 @@ void setup() {
   me = new Player();
   curStickboxX = width/2-45;
   curStickboxY = height/2 - 165;
+  for (int i=0;i<25;i++) {
+    tip1LocsX[i] = random(40,60); 
+    tip1LocsY[i] = random(height-120, height-70);
+    tip2LocsX[i] = random(160, 200);
+    tip2LocsY[i] = random(height - 120, height - 70);
+    sticksLum[i] = int(random(130,200));
+  }
+  for (int i=0;i<25;i++) {
+    tip1LocsX[25+i] = random(40,60); 
+    tip1LocsY[25+i] = random(height-80, height-25);
+    tip2LocsX[25+i] = random(160, 200);
+    tip2LocsY[25+i] = random(height - 80, height - 25);
+    sticksLum[25+i] = int(random(130,200));
+  }
 }
 
 void draw() {
@@ -117,10 +137,16 @@ void roundScreen() {
   if (whoseTurn == 0) {
     fill(255);
     rect(20, height - 140, 200, 120);
+    colorMode(HSB);
     for (int i=0; i<50; i++) {
       //draw sticks
+      strokeWeight(10); stroke(30,100,sticksLum[i], 160);
+      line(tip1LocsX[i], tip1LocsY[i], tip2LocsX[i], tip2LocsY[i]);
     }
+    strokeWeight(1);
+    colorMode(RGB);
   }
+  
 }
 void gameOverScreen() {
 }
