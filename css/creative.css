@@ -344,5 +344,5 @@ header.masthead {
   padding: 15px 30px; }
 
   #game {
-    min-height: auto;
+    height: 100%;
   }
