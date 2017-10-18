@@ -64,9 +64,9 @@
         </div>
       </div>
     </header>
+    <div class="fill" height="100vh">
 
     <section class="bg-primary" id="about">
-      <div class="container fill">
         <div class="row">
           <div class="col-lg-8 mx-auto text-center">
             <h2 class="section-heading text-white">Instructions</h2>
@@ -75,23 +75,18 @@
             <a class="btn btn-default btn-xl js-scroll-trigger" href="#services">Get Started!</a>
           </div>
         </div>
-        <div class="row">
-          <div class="col-lg-8 mx-auto text-center">
-            <h2 class="section-heading text-white">First round</h2>
-            <hr class="light">
-            <p class="text-faded">Choose your ice cream sticks </p>
-            <a class="btn btn-default btn-xl js-scroll-trigger" href="#services">Get Started!</a>
-          </div>
-        </div>
-      </div>
     </section>
-
-    <section id="services">
+    </div>
+      
+    <section id="game1">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
-            <h2 class="section-heading">At Your Service</h2>
+            <h2 class="section-heading">Round 1</h2>
             <hr class="primary">
+              <p>Take your ice cream sticks!</p>
+              <canvas data-processing-sources="game/game.pde"></canvas>
+
           </div>
         </div>
       </div>
@@ -269,6 +264,7 @@
 
     <!-- Custom scripts for this template -->
     <script src="js/creative.min.js"></script>
+      <script src="vendor/processing.js"></script>
 
   </body>
 

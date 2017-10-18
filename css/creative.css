@@ -194,8 +194,7 @@ header.masthead {
             margin-right: auto;
             margin-left: auto; } }
 .fill { 
-    min-height: 90%;
-    height: 90%;
+    min-height: 100vh;
 }
 .service-box {
   max-width: 400px;
