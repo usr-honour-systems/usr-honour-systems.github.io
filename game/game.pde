@@ -9,6 +9,9 @@ int stickButW = 80;
 int stickButH = 30;
 int mySticks = 0;
 
+float curStickboxX;
+float curStickboxY;
+float easing = 0.05;
 
 Game currentGame; 
 Player p1;
@@ -39,6 +42,8 @@ void setup() {
   p2 = new Player();
   p3 = new Player();
   me = new Player();
+  curStickboxX = width/2-45;
+  curStickboxY = height/2 - 165;
 }
 
 void draw() {
@@ -80,27 +85,42 @@ void drawPlayers() {
   int playerRad = 60;
   int[] playerlocX = {width/2 + 80, width/2-20, width/2 - 120, width/2-20 };
   int[] playerlocY = {height/2 - 20, height/2 - 120, height/2 - 20, height/2 + 80 };
-  int[] boxlocX =  {width/2 + 55, width/2-45, width/2 - 145, width/2-45 };
-  int[] boxlocY = {height/2 - 10, height/2 - 165, height/2 - 10,height/2 + 90 };
   for (int i=0; i<4; i++) {
     if (i == 0) { fill(150, 255, 150); } else { fill(100, 205, 100); }
     ellipse(playerlocX[i], playerlocY[i], playerRad, playerRad);
     fill(0); String playr = i==0? "YOU" : "Player " + i; 
     text(playr, playerlocX[i], playerlocY[i]+2);
   }
-  fill(150, 200, 255); ellipse(width/2-100, height/2-150, 55, 55);
-  fill(0); text("Tham", width/2-100, height/2-145);
-  
-    fill(255); stroke(0);
-    rect(boxlocX[whoseTurn], boxlocY[whoseTurn], 50, 30);
-    fill(0); noStroke(); text("sticks", boxlocX[whoseTurn]+25, boxlocY[whoseTurn]+20);
-  
+//  fill(150, 200, 255); ellipse(width/2-100, height/2-150, 55, 55);
+//  fill(0); text("Tham", width/2-100, height/2-145);
+}
+void drawSticksBox() {
+  int[] boxlocX =  {width/2 + 55, width/2-45, width/2 - 145, width/2-45 };
+  int[] boxlocY = {height/2 - 10, height/2 - 165, height/2 - 10,height/2 + 90 };
+  fill(255); stroke(0);
+  float rectTargetX = float(boxlocX[whoseTurn]);
+  float rectTargetY = float(boxlocY[whoseTurn]);
+  float dx = rectTargetX - curStickboxX;
+  float dy = rectTargetY - curStickboxY;
+  curStickboxX += dx * easing; curStickboxY += dy * easing;
+  rect(curStickboxX, curStickboxY, 50, 30);
+  println(curStickboxX, curStickboxY);
+  fill(0); noStroke(); 
+  text("sticks", curStickboxX+25, curStickboxY+20); 
 }
 void roundScreen() {
   background(230);
   roundText();
   readyButton();
   drawPlayers();
+  drawSticksBox();
+  if (whoseTurn == 0) {
+    fill(255);
+    rect(20, height - 140, 200, 120);
+    for (int i=0; i<50; i++) {
+      //draw sticks
+    }
+  }
 }
 void gameOverScreen() {
 }
