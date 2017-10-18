@@ -26,28 +26,29 @@ Player p3;
 Player me;
 
 class Game {
-  int r1winners;
-  int r2winners;
-  int r3winners;
+  int[] winnersinround = new int[3];
 }
 
 class Player {
   int[] sticks = new int[3];
-  boolean r1winner;
-  boolean r2winner;
-  boolean r3winner;
+  boolean[] winnerofround = new boolean[3];
   void takeSticks(int currentRound) {
     this.sticks[currentRound] = int(random(0, 10));
   }
 }
-  
-void setup() {
-  size(500,500);
+
+void newGame() {
   currentGame = new Game();
+  roundNum = 1; whoseTurn=1; 
   p1 = new Player();
   p2 = new Player();
   p3 = new Player();
   me = new Player();
+}
+  
+void setup() {
+  size(500,500);
+  newGame();
   curStickboxX = width/2-45;
   curStickboxY = height/2 - 165;
   for (int i=0;i<25;i++) {
@@ -94,10 +95,10 @@ void roundText() {
   textSize(11);
   fill(50,100,200);
   if (roundNum == 2) { 
-    text("Round 1: You took " + me.sticks[0] + " sticks. There were " + currentGame.r1winners + " winners.", width/2+110, 20); 
+    text("Round 1: You took " + me.sticks[0] + " sticks. There were " + currentGame.winnersinround[0] + " winners.", width/2+110, 20); 
   } else if (roundNum == 3) {
-    text("Round 1: You took " + me.sticks[0] + " sticks. There were " + currentGame.r1winners + " winners.", width/2+110, 20); 
-    text("Round 2: You took " + me.sticks[0] + " sticks. There were " + currentGame.r2winners + " winners.", width/2+110, 32); 
+    text("Round 1: You took " + me.sticks[0] + " sticks. There were " + currentGame.winnersinround[0] + " winners.", width/2+110, 20); 
+    text("Round 2: You took " + me.sticks[1] + " sticks. There were " + currentGame.winnersinround[1] + " winners.", width/2+110, 32); 
   }
 }
 void drawPlayers() {
@@ -145,10 +146,38 @@ void roundScreen() {
     }
     strokeWeight(1);
     colorMode(RGB);
+    text("You have taken " + mySticks + " sticks.", width/2, height-20);
   }
   
 }
 void gameOverScreen() {
+  background(0);
+  fill(255);
+  textSize(20);
+  text("Game Results", width/2, 80);
+  textSize(16);
+  text("Round 1 - Number of winners: " + currentGame.winnersinround[0], width/2, height/2-100);
+  textSize(11);
+  text("you took: " + me.sticks[0] + ". Winner? " + me.winnerofround[0], width/2, height/2-80);
+  text("p1 took: "+ p1.sticks[0] + ". Winner? " + p1.winnerofround[0], width/2, height/2-68);
+  text("p2 took: "+ p2.sticks[0] + ". Winner? " + p2.winnerofround[0], width/2, height/2-56);
+  text("p3 took: "+ p3.sticks[0] + ". Winner? " + p3.winnerofround[0], width/2, height/2-44);
+  textSize(16);
+  text("Round 2 - Number of winners: " + currentGame.winnersinround[1], width/2, height/2-24);
+  textSize(11);
+  text("you took: " + me.sticks[1] + ". Winner? " + me.winnerofround[1], width/2, height/2-4);
+  text("p1 took: "+ p1.sticks[1] + ". Winner? " + p1.winnerofround[1], width/2, height/2+8);
+  text("p2 took: "+ p2.sticks[1] + ". Winner? " + p2.winnerofround[1], width/2, height/2+20);
+  text("p3 took: "+ p3.sticks[1] + ". Winner? " + p3.winnerofround[1], width/2, height/2+32);
+  textSize(16);
+  text("Round 3 - Number of winners: " + currentGame.winnersinround[2], width/2, height/2+52);
+  textSize(11);
+  text("you took: " + me.sticks[2] + ". Winner? " + me.winnerofround[2], width/2, height/2+72);
+  text("p1 took: "+ p1.sticks[2] + ". Winner? " + p1.winnerofround[2], width/2, height/2+84);
+  text("p2 took: "+ p2.sticks[2] + ". Winner? " + p2.winnerofround[2], width/2, height/2+96);
+  text("p3 took: "+ p3.sticks[2] + ". Winner? " + p3.winnerofround[2], width/2, height/2+108);
+  textSize(16);
+  text("Replay?", width/2, height - 60);
 }
 void otherPlayersTurn(int currentRound) {
   whoseTurn = (whoseTurn+1)%4;
@@ -165,9 +194,33 @@ void otherPlayersTurn(int currentRound) {
 
 void advanceRound(int currentRound) {
   me.sticks[currentRound-1] = mySticks;
+  int totalSticks = p1.sticks[currentRound-1] + p2.sticks[currentRound-1] + p3.sticks[currentRound-1] + me.sticks[currentRound-1];
+  if (totalSticks < 8) { currentGame.winnersinround[currentRound-1] = 0; }
+  else {
+    int numOfWinners = 0;
+    int minSticks = min(min(p1.sticks[currentRound-1], p2.sticks[currentRound-1]), min(p3.sticks[currentRound-1], me.sticks[currentRound-1]));
+    if (p1.sticks[currentRound-1] == minSticks) {
+      p1.winnerofround[currentRound-1] = true;
+      numOfWinners ++;
+    }
+    if (p2.sticks[currentRound-1] == minSticks) {
+      p2.winnerofround[currentRound-1] = true;
+      numOfWinners ++;
+    }
+    if (p3.sticks[currentRound-1] == minSticks) {
+      p3.winnerofround[currentRound-1] = true;
+      numOfWinners ++;
+    }
+    if (me.sticks[currentRound-1] == minSticks) {
+      me.winnerofround[currentRound-1] = true;
+      numOfWinners ++;
+    }
+    currentGame.winnersinround[currentRound-1] = numOfWinners;
+  }
   whoseTurn++;
   mySticks = 0; 
   roundNum ++;
+  if (roundNum > 3) gameScreen = 2;
 }
 
 public void mousePressed() {
@@ -183,5 +236,8 @@ public void mousePressed() {
     } else {
       otherPlayersTurn(roundNum);
     }
+  } else {
+    newGame();
+    gameScreen = 1;  
   }
 }
