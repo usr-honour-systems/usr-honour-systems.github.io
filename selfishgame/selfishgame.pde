@@ -1,4 +1,8 @@
 /* @pjs font="Open Sans"; */
+
+// GameScreen 0 = Start
+// GameScreen 1 = Rounds
+// GameScreen 2 = End + Results (Restart?)
 int gameScreen = 0;
 int roundNum = 1; int whoseTurn=1; 
 int stickButX = 400;
@@ -21,9 +25,9 @@ float[] tip2LocsY = new float[50];
 int[] sticksLum = new int[50];
 
 Game currentGame; 
-Player1 p1;
+Player p1;
 Player p2;
-Player p3;
+SelfishPlayer p3;
 Player me;
 
 PFont opensemi;
@@ -38,25 +42,24 @@ class Player {
   boolean[] winnerofround = new boolean[4];
   int[] money = new int[4];
   void takeSticks(int currentRound) {
-    this.sticks[currentRound] = 2;
+    this.sticks[currentRound] = int(random(1, 3));
   }
 }
-class Player1 {
+class SelfishPlayer{
   int[] sticks = new int[4];
   boolean[] winnerofround = new boolean[4];
   int[] money = new int[4];
   void takeSticks(int currentRound) {
-    this.sticks[currentRound] = 1;
+    this.sticks[currentRound] = int(random(0, 2));
   }
 }
-
 
 void newGame() {
   currentGame = new Game();
   roundNum = 1; whoseTurn=1; 
-  p1 = new Player1();
+  p1 = new Player();
   p2 = new Player();
-  p3 = new Player();
+  p3 = new SelfishPlayer();
   me = new Player();
 }
   
@@ -84,7 +87,7 @@ void setup() {
 void draw() {
   if (gameScreen == 0) {
     initScreen();
-    curfc+=1;
+    curfc += 1;
   } else if (gameScreen == 1) {
     roundScreen();
   } else if (gameScreen == 2) {

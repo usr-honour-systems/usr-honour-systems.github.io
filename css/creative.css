@@ -1,5 +1,5 @@
 /*!
- * Start Bootstrap - Createive v4.0.0-beta (http://startbootstrap.com/template-overviews/creative)
+ * Start Bootstrap - Createive v4.0.0-beta.2 (https://startbootstrap.com/template-overviews/creative)
  * Copyright 2013-2017 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-creative/blob/master/LICENSE)
  */
@@ -193,9 +193,12 @@ header.masthead {
             max-width: 80%;
             margin-right: auto;
             margin-left: auto; } }
-.fill { 
+
+.fill {
     min-height: 100vh;
+    vertical-align: middle;
 }
+
 .service-box {
   max-width: 400px;
   margin: 50px auto 0; }
@@ -344,3 +347,36 @@ header.masthead {
 
 .btn-xl {
   padding: 15px 30px; }
+
+.bg-img {
+    width: 100%;
+  min-height: auto;
+  text-align: center;
+  color: white;
+  background-image: url("../img/header.jpg");
+  background-position: center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; }
+
+.parallax { 
+    /* The image used */
+    background-image: url("../img/header.jpg");
+
+    /* Set a specific height */
+    height: 500px; 
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.selfish, .generous, .fair {
+    min-width: 400px;
+}
+.carousel {
+    min-height: 600px;
+}
