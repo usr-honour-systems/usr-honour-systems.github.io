@@ -147,7 +147,7 @@ header.masthead {
   min-height: auto;
   text-align: center;
   color: white;
-  background-image: url("../img/header.jpg");
+  background-image: url("../img/usprov.jpg");
   background-position: center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -374,10 +374,15 @@ header.masthead {
     background-size: cover;
 }
 .parallax#about {
-    background-image: url("../img/usprov.jpg");
+    background-image: url("../img/header1.jpg");
 }
 .parallax#discussion {
-    background-image: url("../img/conway3.gif");   
+    background-image: url("../img/conway3.gif");  
+    min-height: 700px;
+}
+.parallax#team {
+    background-image: url("../img/chatterbox.jpg");
+    min-height: 800px;
 }
 .selfish, .generous, .fair {
     min-width: 400px;
