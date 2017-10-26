@@ -444,6 +444,7 @@ header.masthead {
 }
 
 .profile {
+    align-self: center;
     height: 250px; width: 250px;
     max-height: 200px; max-width: 200px;
 }
