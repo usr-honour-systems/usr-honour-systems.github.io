@@ -442,3 +442,7 @@ header.masthead {
     font-size: 13px;
     padding: 10px;
 }
+
+.profile {
+    max-height: 400px;
+}
