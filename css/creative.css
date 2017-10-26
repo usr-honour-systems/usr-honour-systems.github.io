@@ -381,18 +381,18 @@ header.masthead {
 }
 .parallax#about {
     background-image: url("../img/header1.jpg");
-    min-height: 1000px;
+    min-height: 1100px;
 }
-.parallax#discussion {
+.parallax#discussion1 {
     background-image: url("../img/conway3.gif");  
-    min-height: 700px;
+    min-height: 1100px;
 }
 .parallax#team {
     background-image: url("../img/chatterbox.jpg");
     min-height: 800px;
 }
 .selfish, .generous, .fair {
-    min-width: 400px;
+    min-width: 500px;
 }
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
