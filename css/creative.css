@@ -381,9 +381,13 @@ header.masthead {
 }
 .parallax#about {
     background-image: url("../img/header1.jpg");
-    min-height: 1200px;
+    min-height: 1300px;
 }
 .parallax#discussion1 {
+    background-image: url("../img/conway3.gif");  
+    min-height: 1100px;
+}
+.parallax#discussion2 {
     background-image: url("../img/conway3.gif");  
     min-height: 1100px;
 }
