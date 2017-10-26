@@ -389,7 +389,7 @@ header.masthead {
 }
 @media (max-width: 700px) {
     .parallax#about {
-        min-height: 1100px;
+        min-height: 1200px;
     }
 }
 @media (min-width: 700px) {
