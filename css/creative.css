@@ -381,11 +381,29 @@ header.masthead {
 }
 .parallax#about {
     background-image: url("../img/header1.jpg");
-    min-height: 1200px;
+}
+@media (max-width: 700px) {
+    .parallax#discussion1 { 
+        min-height: 1200px;
+    }
+}
+@media (max-width: 700px) {
+    .parallax#about {
+        min-height: 1100px;
+    }
+}
+@media (min-width: 700px) {
+    .parallax#about {
+        min-height: 900px;
+    }
+}
+@media (min-width: 800px) {
+    .parallax#discussion1 {
+        min-height: 800px;
+    }
 }
 .parallax#discussion1 {
     background-image: url("../img/conway3.gif");  
-    min-height: 1100px;
 }
 .parallax#discussion2 {
     background-image: url("../img/conway3.gif");  
